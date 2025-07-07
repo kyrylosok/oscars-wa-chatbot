@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     
     # Application Configuration
     app_host: str = Field(default="0.0.0.0", env="APP_HOST")
-    app_port: int = Field(default=8000, env="APP_PORT")
+    app_port: int = Field(default=8080, env="APP_PORT")
     debug: bool = Field(default=False, env="DEBUG")
     stage: str = Field(default="development", env="STAGE")
     
