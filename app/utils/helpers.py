@@ -3,10 +3,18 @@ import re
 import logging
 from typing import List, Dict, Any, Optional
 from datetime import datetime, timedelta
-
+from google.cloud import storage
 
 logger = logging.getLogger(__name__)
 
+def download_blob(bucket_name, source_blob_name, destination_file_name):
+    """Downloads a blob from the bucket."""
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(source_blob_name)
+    blob.download_to_filename(destination_file_name)
+
+    print(f"Downloaded {source_blob_name} from bucket {bucket_name} to {destination_file_name}.")
 
 def generate_user_id(phone_number: str) -> str:
     """Generate a unique user ID from phone number."""

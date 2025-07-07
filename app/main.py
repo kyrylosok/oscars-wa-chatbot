@@ -13,6 +13,7 @@ from app.services.chatbot import ChatbotService
 from app.services.twilio_service import TwilioService
 from app.services.ngrok_service import NgrokService
 from app.models import WhatsAppMessage, ChatResponse
+from app.utils.helpers import download_blob
 
 # Configure logging
 logging.basicConfig(
@@ -35,6 +36,11 @@ async def lifespan(app: FastAPI):
     
     global chatbot_service, twilio_service, ngrok_service
     
+    # download files
+    if settings.stage == "production":
+        await download_blob(settings.gcs_bucket_name, settings.pdf_file_path_dev, settings.pdf_file_path_prod)
+        await download_blob(settings.gcs_bucket_name, settings.faiss_index_path_dev, settings.faiss_index_path_prod)
+
     # Initialize services
     chatbot_service = ChatbotService()
     twilio_service = TwilioService()
