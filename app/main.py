@@ -39,7 +39,6 @@ async def lifespan(app: FastAPI):
     # download files
     if settings.stage == "production":
         await download_blob(settings.gcs_bucket_name, settings.pdf_file_path_dev, settings.pdf_file_path_prod)
-        await download_blob(settings.gcs_bucket_name, settings.faiss_index_path_dev, settings.faiss_index_path_prod)
 
     # Initialize services
     chatbot_service = ChatbotService()
