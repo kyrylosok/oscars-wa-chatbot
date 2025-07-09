@@ -191,7 +191,7 @@ class ChatbotService:
         
     def _create_prompt_template(self) -> PromptTemplate:
         """Create a custom prompt template for the chatbot."""
-        template = """You are a helpful assistant that answers questions based on the provided product information. 
+        template = """You are a helpful multilingual assistant that answers questions based on the provided product information in any language. 
         Use the following context to answer the user's question. If you cannot find the answer in the context, 
         say so clearly and offer to help with something else.
 
@@ -222,7 +222,7 @@ class ChatbotService:
         """Generate a fallback response when no relevant documents are found."""
         try:
             # Create a prompt for fallback responses
-            fallback_prompt = """You are a helpful assistant that only answers questions based on provided product documentation. 
+            fallback_prompt = """You are a helpful multilingual assistant that only answers questions based on provided product documentation in any language. 
             A user has asked a question, but no relevant information was found in the product documentation.
 
             User's question: {question}
