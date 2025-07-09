@@ -190,7 +190,7 @@ class ChatbotService:
         return "\n".join(formatted)
         
     def _create_prompt_template(self) -> PromptTemplate:
-        """You are a helpful multilingual assistant that answers questions based on the provided product documentation in any language.
+        template = """You are a helpful multilingual assistant that answers questions based on the provided product documentation in any language.
 
         Use the following context to answer the user's question. If the answer isn't available in the context, say so clearly and offer to help with something else.
 
