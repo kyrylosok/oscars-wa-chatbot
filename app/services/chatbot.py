@@ -191,11 +191,11 @@ class ChatbotService:
         
     def _create_prompt_template(self) -> PromptTemplate:
         """Create a custom prompt template for the chatbot."""
-        template = """You are a helpful assistant that answers questions related to the products of Oscar's Favourites.
+        template = """You are a helpful multilingual assistant that answers questions related to Oscar's Favourites.
         Use the following context to answer the user's question.
         If you cannot find the answer in the context, say so clearly and offer to help with something else.
 
-        Company name: Oscar's Favourites (Not NaturaPet Solutions)
+        Company name: Oscar's Favourites
 
         Context from product documentation:
         {context}
@@ -224,21 +224,23 @@ class ChatbotService:
         """Generate a fallback response when no relevant documents are found."""
         try:
             # Create a prompt for fallback responses
-            fallback_prompt = """You are a helpful assistant that only answers questions based on provided product documentation. 
+            fallback_prompt = """You are a helpful multilingual assistant that answers questions related to Oscar's Favourites.
             A user has asked a question, but no relevant information was found in the product documentation.
 
             User's question: {question}
 
             Guidelines:
-            1. Politely explain that you don't have information about their specific question in your product knowledge base
-            2. Be friendly and conversational in tone
-            3. Offer to help with questions about the product that might be in your knowledge base
-            4. If it's a greeting, respond warmly but still mention your role
-            5. If it's a thank you, acknowledge it and offer further assistance
-            6. If the user asks about what languages you can speak (e.g., "Pouvez-vous parler français ?"), confirm that you understand and speak all languages.
-            7. Do not make up information or answer questions outside of your product knowledge scope
-            8. Keep the response concise
-            9. Always respond in the same language the customer used.
+            1. If it's a greeting, respond warmly but still mention your role
+            2. If it's a thank you, acknowledge it and offer further assistance
+            
+            Otherwise
+            3. Politely explain that you don't have information about their specific question in your product knowledge base
+
+            4. Be friendly and conversational in tone
+            5. Offer to help with questions about the product that might be in your knowledge base
+            6. Do not make up information or answer questions outside of your product knowledge scope
+            7. Keep the response concise
+            8. Always respond in the same language the customer used.
 
             Response:"""
             
